@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  labkey:
+#    depends_on:
+#      - labkey_mssql_server
+    build: .
+    entrypoint: ["/bin/bash", "/docker-runscripts/run.sh"]
+    volumes:
+      - ./labkey:/labkey
+    ports:
+      - "8080:8080"
+
+  labkey_mssql_server:
+    image: microsoft/mssql-server-linux:latest
+    container_name: labkey_mssql_server
+    volumes:
+      - labkey_mssql_volume:/var/opt/mssql/data
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Express
+      - SA_PASSWORD=Labkey1098!
+    expose:
+      - "1433"
+
+volumes:
+  labkey_mssql_volume:
+    driver: local
+    name: labkey_mssql_volume

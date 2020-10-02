@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context docBase="/labkey/labkey/release20.7-SNAPSHOT/build/deploy/labkeyWebapp" reloadable="true" crossContext="true">
+
+    <Resource name="jdbc/labkeyDataSource" auth="Container"
+              type="javax.sql.DataSource"
+              username="sa"
+              password="Labkey1098!"
+              driverClassName="net.sourceforge.jtds.jdbc.Driver"
+              url="jdbc:jtds:sqlserver://labkey_mssql_server:1433/labkey"
+              maxTotal="20"
+              maxIdle="10"
+              maxWaitMillis="120000"
+              accessToUnderlyingConnectionAllowed="true"
+              validationQuery="SELECT 1"
+    />
+
+<!--    <Resource name="jdbc/tnprcDataSource" auth="Container"-->
+<!--              type="javax.sql.DataSource"-->
+<!--              username="labkey"-->
+<!--              password="password"-->
+<!--              driverClassName="net.sourceforge.jtds.jdbc.Driver"-->
+<!--              url="jdbc:jtds:sqlserver://tsprlsqlc1d01.tulane.local:1433/prc"-->
+<!--              maxAcive="20"-->
+<!--              maxTotal="20"-->
+<!--              maxIdle="10"-->
+<!--              accessToUnderlyingConnectionAllowed="true"-->
+<!--              validationQuery="SELECT 1"-->
+<!--    />-->
+
+    <Resource name="mail/Session" auth="Container"
+              type="javax.mail.Session"
+              mail.smtp.host="localhost"
+              mail.smtp.user="Anonymous"
+              mail.smtp.port="25"/>
+
+    <Resources cachingAllowed="true" cacheMaxSize="20000" />
+
+    <Loader loaderClass="org.labkey.bootstrap.LabKeyBootstrapClassLoader" />
+
+    <!-- Encryption key for encrypted property store -->
+    <Parameter name="MasterEncryptionKey" value="defaultKey" />
+
+    <!-- mzML support via JNI -->
+    <!--
+	<Parameter name="org.labkey.api.ms2.mzmlLibrary" value="pwiz_swigbindings"></Parameter>
+	 -->
+
+    <!-- Track installations from Windows Installer -->
+    <!--@@installer@@ <Parameter name="org.labkey.api.util.mothershipreport.usedInstaller" value="true"/> @@installer@@-->
+
+    <!-- Pipeline configuration -->
+    <!--@@pipeline@@    <Parameter name="org.labkey.api.pipeline.config" value="@@pipelineConfigPath@@"/> @@pipeline@@-->
+
+    <!--        brokerURL="tcp://localhost:61616" userName="username" password="password" -->
+    <!--@@jmsConfig@@ <Resource name="jms/ConnectionFactory" auth="Container"
+        type="org.apache.activemq.ActiveMQConnectionFactory"
+        factory="org.apache.activemq.jndi.JNDIReferenceFactory"
+        description="JMS Connection Factory"
+        brokerURL="vm://localhost?broker.persistent=false&amp;broker.useJmx=false"
+        brokerName="LocalActiveMQBroker"/> @@jmsConfig@@-->
+</Context>
