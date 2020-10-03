@@ -7,8 +7,12 @@ JAVA_URL=https://download.java.net/java/GA/jdk13.0.2/d4173c853231432d94f001e99d8
 TOMCAT_URL=https://downloads.apache.org/tomcat/tomcat-9/v9.0.38/bin/apache-tomcat-9.0.38.tar.gz
 
 
-if ! test -d ./dependencies; then
-  mkdir ./dependencies
+if ! test -d ./dependencies
+  then
+    mkdir ./dependencies
+  else
+    rm -rf ./dependencies
+    mkdir ./dependencies
 fi
 
 wget  $JAVA_URL -P ./dependencies/ --progress=bar:force
