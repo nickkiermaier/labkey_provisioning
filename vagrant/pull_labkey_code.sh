@@ -2,7 +2,7 @@
 set -e # exit if any command fails
 
 LABKEY_ROOT=./labkey
-if test -d $LABKEY_ROOT/$LABKEY_BRANCH; then
+if ! test -d $LABKEY_ROOT/$LABKEY_BRANCH; then
   mkdir $LABKEY_ROOT
 fi
 
