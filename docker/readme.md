@@ -1,4 +1,4 @@
-#### NOT WORKING ATM, DUE TO A BUG WITH LABKEY MSSQL 
+#### NOT WORKING ATM, UNABLE TO CONNECT LABKEY TO A NON localhost MSSQL server on local network. 
 
 1. Ensure SSH keys working by testing download of a protected repo.
 1. In labkey folder run `pull_labkey_code.sh`

@@ -34,7 +34,6 @@ cd "$APP_ROOT/src" || exit
 tar -xvzf "$DEPENDENCY_DIR/$TOMCAT_ZIP_FILE" -C "$APP_ROOT/apps"
 mkdir -p "$TOMCAT_HOME/conf/Catalina/localhost"
 
-
 # fail and exit if branch not present
 ls /labkey/$BRANCH
 
