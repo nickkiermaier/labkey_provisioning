@@ -2,7 +2,9 @@
 set -e # exit if any command fails
 
 LABKEY_ROOT=./labkey
-
+if test -d $LABKEY_ROOT/$LABKEY_BRANCH; then
+  mkdir $LABKEY_ROOT
+fi
 
 # For using trunk
 # LABKEY_URL=https://svn.mgt.labkey.host/stedi/trunk
