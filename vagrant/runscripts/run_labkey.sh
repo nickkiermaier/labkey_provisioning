@@ -1,6 +1,5 @@
-#!/bin/bash
+#!/bin/bash -e
 
-cd $CATALINA_HOME || exit
 
 /labkey_apps/apps/jdk-13.0.2/bin/java  \
 -agentlib:jdwp=transport=dt_socket,address=127.0.0.1:37353,suspend=n,server=y \

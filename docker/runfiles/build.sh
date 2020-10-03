@@ -32,3 +32,5 @@ cd "$APP_ROOT/src" || exit
 tar -xvzf "$DEPENDENCY_DIR/$TOMCAT_ZIP_FILE" -C "$APP_ROOT/apps"
 mkdir -p "$TOMCAT_HOME/conf/Catalina/localhost"
 
+# wipe any existing build artifacts
+rm -rf $LABKEY_HOME/build

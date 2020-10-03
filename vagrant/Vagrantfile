@@ -9,13 +9,22 @@ Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
+    config.vm.provider "virtualbox" do |v|
+        v.memory = 4096
+        v.cpus = 2
+    end
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "ubuntu/bionic64"
-  config.vm.provision "shell", path: "bootstrap.sh"
-  config.vm.provision "shell", path: "unattended_mssql.sh"
-  config.vm.provision "shell", path: "run.sh"
+    config.vm.box = "ubuntu/bionic64"
+    config.vm.synced_folder "dependencies/", "/tmp/dependencies"
+    config.vm.synced_folder "labkey/", "/labkey"
+    config.vm.provision "shell", path: "runscripts/env_vars.sh"
+    # config.vm.provision "shell", path: "runscripts/unattended_mssql.sh"
+    config.vm.provision "shell", path: "runscripts/bootstrap.sh"
+    config.vm.network "forwarded_port", guest: 8080, host: 8080
+
+
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.

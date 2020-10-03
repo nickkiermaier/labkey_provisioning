@@ -1,3 +1,5 @@
-.idea
-docker/dependencies
-docker/labkey/**/
+.idea/
+dependencies/
+labkey/
+.vagrant/
+*.log

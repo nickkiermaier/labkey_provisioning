@@ -27,4 +27,4 @@ ADD ./dependencies /tmp/dependencies
 
 # layers
 RUN chmod +x -R /docker-runscripts
-RUN /docker-runscripts/base.sh
+RUN /docker-runscripts/build.sh

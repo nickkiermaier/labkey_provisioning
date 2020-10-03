@@ -1,10 +1,10 @@
-#!/bin/bash
-set -e # exit if any command fails
+#!/bin/bash -e
 
+echo $LABKEY_HOME
+echo $TOMCAT_ZIP_FILE
 
-
-# setup dependencies
-apt-get update
+## setup dependencies
+apt-get update -y
 apt-get upgrade -y
 apt-get install -y zip unzip git curl wget
 
@@ -34,17 +34,20 @@ cd "$APP_ROOT/src" || exit
 tar -xvzf "$DEPENDENCY_DIR/$TOMCAT_ZIP_FILE" -C "$APP_ROOT/apps"
 mkdir -p "$TOMCAT_HOME/conf/Catalina/localhost"
 
-#!/bin/bash
-set -e # exit if any command fails
 
-ls /labkey
-
+# fail and exit if branch not present
+ls /labkey/$BRANCH
 
 ## copy workspace template
 echo "config intellij workspace template"
 if ! test -f "$LABKEY_HOME/.idea/workspace.xml"; then
   cp "$LABKEY_HOME/.idea/workspace.template.xml" "$LABKEY_HOME/.idea/workspace.xml"
 fi
+
+# config mssql file
+echo "config gradle mssql.properties"
+sed -i "s|jdbcUser=sa|jdbcUser=$SQL_USER|g" $LABKEY_HOME/server/configs/mssql.properties
+sed -i "s|jdbcPassword=sa|jdbcPassword=$SQL_PASSWORD|g" $LABKEY_HOME/server/configs/mssql.properties
 
 ## setup user gradle file
 echo "config user gradle $HOME/.gradle"
@@ -55,3 +58,5 @@ echo "org.gradle.parallel=true" >> "$HOME/.gradle/gradle.properties"
 echo "org.gradle.jvmargs=-Xmx4g" >> "$HOME/.gradle/gradle.properties"
 cd "$LABKEY_HOME"
 
+./gradlew pickMSSQL
+./gradlew deployApp

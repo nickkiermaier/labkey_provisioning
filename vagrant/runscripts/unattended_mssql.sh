@@ -1,11 +1,11 @@
 #!/bin/bash -e
 # https://docs.microsoft.com/en-us/sql/linux/sample-unattended-install-ubuntu?view=sql-server-ver15
 #!/bin/bash
-export MSSQL_SA_PASSWORD='<YourStrong!Passw0rd>'
+export MSSQL_SA_PASSWORD='Labkey1098!'
 export MSSQL_PID='evaluation'
 export SQL_INSTALL_AGENT='y'
-export SQL_INSTALL_USER='<Username>'
-export SQL_INSTALL_USER_PASSWORD='<YourStrong!Passw0rd>'
+export SQL_INSTALL_USER='labkey-user'
+export SQL_INSTALL_USER_PASSWORD='Labkey-user-1098!'
 export SQL_INSTALL_AGENT='y'
 
 if [ -z $MSSQL_SA_PASSWORD ]
@@ -41,12 +41,6 @@ echo PATH="$PATH:/opt/mssql-tools/bin" >> ~/.bash_profile
 echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 source ~/.bashrc
 
-# Optional SQL Server Agent installation:
-if [ ! -z $SQL_INSTALL_AGENT ]
-then
-  echo Installing SQL Server Agent...
-  sudo apt-get install -y mssql-server-agent
-fi
 
 # Optional SQL Server Full Text Search installation:
 if [ ! -z $SQL_INSTALL_FULLTEXT ]

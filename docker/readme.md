@@ -1,3 +1,5 @@
+#### NOT WORKING ATM, DUE TO A BUG WITH LABKEY MSSQL 
+
 1. Ensure SSH keys working by testing download of a protected repo.
 1. In labkey folder run `pull_labkey_code.sh`
 1. In docker folder run `docker-compose up`

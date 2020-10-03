@@ -2,14 +2,14 @@ version: '3.7'
 
 services:
   labkey:
-#    depends_on:
-#      - labkey_mssql_server
     build: .
     entrypoint: ["/bin/bash", "/docker-runscripts/run.sh"]
     volumes:
       - ./labkey:/labkey
     ports:
       - "8080:8080"
+    tty: true
+    stdin_open: false
 
   labkey_mssql_server:
     image: microsoft/mssql-server-linux:latest
